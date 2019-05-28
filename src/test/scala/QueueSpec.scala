@@ -28,6 +28,8 @@ class QueueSpec extends FunSpec with Matchers {
       val expected = Queue(2, 3, 5, 7, 9)
       val actual = Queue(2, 3, 5, 7).enQueue(9)
       assert(expected === actual)
+
+      // TODO jQueue, confirm is `new`
     }
 
   }
@@ -38,6 +40,8 @@ class QueueSpec extends FunSpec with Matchers {
       val expected = Queue(3, 5, 7, 9)
       val actual = Queue(2, 3, 5, 7, 9).deQueue
       assert(expected === actual)
+
+      // TODO jQueue, confirm is `new`
     }
 
   }
@@ -48,8 +52,20 @@ class QueueSpec extends FunSpec with Matchers {
       assert(Some(2) === Queue(2, 3, 5, 7).head)
     }
 
+    it("should return a front value if exist"){
+      val jQueue = new ImmutableQueueImpl[Int](2, 3, 5)
+      assert(2 === jQueue.head())
+    }
+
     it("should return a none if queue is empty") {
       assert(None === Queue().head)
+    }
+
+    it("should be exception if queue is empty"){
+      val jQueue = new ImmutableQueueImpl[Int]
+      intercept[IndexOutOfBoundsException] {
+        jQueue.head()
+      }
     }
 
   }

@@ -4,35 +4,41 @@ import java.util.List;
 
 public class ImmutableQueueImpl<T> implements ImmutableQueue<T> {
 
-  private List<T> queue;
+    private final List<T> queue;
 
-  public ImmutableQueueImpl() {
-    this.queue = new ArrayList<>();
-  }
+    private ImmutableQueueImpl(List<T> queue) {
+        this.queue = queue;
+    }
 
-  @SafeVarargs
-  public ImmutableQueueImpl(T...ts) {
-    this.queue = Arrays.asList(ts);
-  }
+    public ImmutableQueueImpl() {
+        queue = new ArrayList<>();
+    }
 
-  @Override
-  public ImmutableQueue<T> enQueue(T t) {
-    return null;
-  }
+    @SafeVarargs
+    public ImmutableQueueImpl(T... ts) {
+        queue = Arrays.asList(ts);
+    }
 
-  @Override
-  public ImmutableQueue<T> deQueue() {
-    return null;
-  }
+    @Override
+    public ImmutableQueue<T> enQueue(T t) {
+        queue.add(t);
+        return new ImmutableQueueImpl<>(queue);
+    }
 
-  @Override
-  public T head() {
-    return null;
-  }
+    @Override
+    public ImmutableQueue<T> deQueue() {
+        return new ImmutableQueueImpl<>(queue.subList(1, queue.size()));
+    }
 
-  @Override
-  public boolean isEmpty() {
-    return queue.isEmpty();
-  }
+    @Override
+    public T head() {
+        if (queue.isEmpty()) throw new IndexOutOfBoundsException();
+        return queue.get(0);
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return queue.isEmpty();
+    }
 
 }
