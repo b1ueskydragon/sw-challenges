@@ -6,12 +6,18 @@ class QueueSpec extends FunSpec with Matchers {
 
     it("should return true if queue is empty") {
       val queue = Queue()
+      val jQueue = new ImmutableQueueImpl[Int]
+
       assert(queue.isEmpty)
+      assert(jQueue.isEmpty)
     }
 
     it("should return false if queue is not empty") {
       val queue = Queue(2, 3, 5)
+      val jQueue = new ImmutableQueueImpl[Int](2, 3, 5)
+
       assert(!queue.isEmpty)
+      assert(!jQueue.isEmpty)
     }
 
   }
