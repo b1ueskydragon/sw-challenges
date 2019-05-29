@@ -29,6 +29,9 @@ class ImmutableQueueSpec {
 
   @Test
   void testEnQueue_and_DeQueue_immutable() {
+    assertEquals(3, (int) emptyQueue.enQueue(3).head());
+    assertTrue(emptyQueue.isEmpty());
+
     ImmutableQueue<Integer> q1 = queue.enQueue(7);
     ImmutableQueue<Integer> q2 = q1.deQueue();
     ImmutableQueue<Integer> q3 = q2.deQueue();
