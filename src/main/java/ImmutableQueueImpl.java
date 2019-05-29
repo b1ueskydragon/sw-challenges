@@ -23,8 +23,9 @@ public class ImmutableQueueImpl<T> implements ImmutableQueue<T> {
 
   @Override
   public ImmutableQueue<T> enQueue(T t) {
-    queue.add(t);
-    return new ImmutableQueueImpl<>(queue);
+    List<T> newQueue = new ArrayList<>(queue);
+    newQueue.add(t);
+    return new ImmutableQueueImpl<>(newQueue);
   }
 
   @Override

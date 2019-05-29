@@ -28,8 +28,14 @@ class ImmutableQueueSpec {
   }
 
   @Test
-  void testEnQueue_DeQueue() {
-    ImmutableQueue<Integer> newQueue = queue.enQueue(7);
+  void testEnQueue_and_DeQueue_immutable() {
+    ImmutableQueue<Integer> q1 = queue.enQueue(7);
+    ImmutableQueue<Integer> q2 = q1.deQueue();
+    ImmutableQueue<Integer> q3 = q2.deQueue();
+    ImmutableQueue<Integer> q4 = q3.deQueue();
+
+    assertEquals(7, (int) q4.head());
+    assertEquals(2, (int) queue.head());
   }
 
 }
