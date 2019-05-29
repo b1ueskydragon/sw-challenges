@@ -1,4 +1,4 @@
-name := "pay-baymax-coding"
+name := "software-engineer-questions"
 
 version := "0.1"
 
